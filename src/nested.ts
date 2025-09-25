@@ -7,7 +7,7 @@ import { makeBlankQuestion, duplicateQuestion } from "./objects";
  * that are `published`.
  */
 export function getPublishedQuestions(questions: Question[]): Question[] {
-    return questions.filter((question) => question.published);
+    return questions.filter((questions) => questions.published);
 }
 
 /**
@@ -28,12 +28,8 @@ export function getNonEmptyQuestions(questions: Question[]): Question[] {
  * Consumes an array of questions and returns the question with the given `id`. If the
  * question is not found, return `null` instead.
  */
-export function findQuestion(
-    questions: Question[],
-    id: number,
-): Question | null {
-    const found = questions.find((question) => question.id === id);
-    return found || null;
+export function findQuestion(questions: Question[],id: number,): Question | null {
+    return questions.find((questions) => questions.id === id) ?? null;
 }
 
 /**
@@ -41,7 +37,7 @@ export function findQuestion(
  * with the given `id`.
  */
 export function removeQuestion(questions: Question[], id: number): Question[] {
-    return questions.filter((question) => question.id !== id);
+    return questions.filter((questions) => questions.id !== id);
 }
 
 /***
@@ -49,23 +45,21 @@ export function removeQuestion(questions: Question[], id: number): Question[] {
  * questions, as an array.
  */
 export function getNames(questions: Question[]): string[] {
-    return questions.map((question) => question.name);
+    return questions.map((questions) => questions.name)
 }
 
 /***
  * Consumes an array of questions and returns the sum total of all their points added together.
  */
 export function sumPoints(questions: Question[]): number {
-    return questions.reduce((sum, question) => sum + question.points, 0);
+    return questions.reduce((sum, questions) => sum + questions.points, 0);
 }
 
 /***
  * Consumes an array of questions and returns the sum total of the PUBLISHED questions.
  */
 export function sumPublishedPoints(questions: Question[]): number {
-    return questions
-        .filter((question) => question.published)
-        .reduce((sum, question) => sum + question.points, 0);
+    return questions.reduce((sum, questions) => questions.published ? sum + questions.points : sum, 0);
 }
 
 /***
@@ -92,6 +86,7 @@ export function toCSV(questions: Question[]): string {
             `${question.id},${question.name},${question.options.length},${question.points},${question.published}`,
     );
     return header + "\n" + rows.join("\n");
+
 }
 
 /**
@@ -106,6 +101,7 @@ export function makeAnswers(questions: Question[]): Answer[] {
         submitted: false,
         correct: false,
     }));
+
 }
 
 /***
@@ -127,6 +123,7 @@ export function sameType(questions: Question[]): boolean {
     if (questions.length === 0) return true;
     const firstType = questions[0].type;
     return questions.every((question) => question.type === firstType);
+
 }
 
 /***
@@ -157,6 +154,7 @@ export function renameQuestionById(
     return questions.map((question) =>
         question.id === targetId ? { ...question, name: newName } : question,
     );
+
 }
 
 /***
@@ -183,6 +181,7 @@ export function changeQuestionTypeById(
             }
         :   question,
     );
+
 }
 
 /**
@@ -213,6 +212,7 @@ export function editOption(
         }
         return question;
     });
+
 }
 
 /***
@@ -227,13 +227,12 @@ export function duplicateQuestionInArray(
     newId: number,
 ): Question[] {
     const result: Question[] = [];
-
     for (const question of questions) {
         result.push(question);
         if (question.id === targetId) {
             result.push(duplicateQuestion(newId, question));
         }
     }
-
     return result;
+
 }

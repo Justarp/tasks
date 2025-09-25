@@ -1,6 +1,11 @@
 import React from "react";
 import "./App.css";
-import { Button } from "react-bootstrap";
+import { ChangeType } from "./components/ChangeType";
+import { RevealAnswer } from "./components/RevealAnswer";
+import { StartAttempt } from "./components/StartAttempt";
+import { TwoDice } from "./components/TwoDice";
+import { CycleHoliday } from "./components/CycleHoliday";
+import { Counter } from "./components/Counter";
 
 function App(): React.JSX.Element {
     return (
@@ -8,31 +13,18 @@ function App(): React.JSX.Element {
             <header className="App-header" style={{ backgroundColor: "red" }}>
                 <h1>Justin Arpaia UD CISC275</h1>
             </header>
-
-            <div>
-                Hello World THIS IS MY TASKS WEBSITE
-                <br />
-                Grocery List:
-            </div>
-            <ul>
-                <li>Apples</li>
-                <li>Bananas</li>
-                <li>Oranges</li>
-                <li>Grapes</li>
-            </ul>
-
-            <img
-                src="https://tse1.mm.bing.net/th/id/OIP.UuGWiMCp18vRsh54-7LHBgHaHZ?cb=thfvnext&rs=1&pid=ImgDetMain&o=7&rm=3"
-                alt="Picture of Smiley Face"
-            />
-
-            <Button
-                onClick={() => {
-                    console.log("Hello World!");
-                }}
-            >
-                Log Hello World
-            </Button>
+            <hr></hr>
+            <Counter></Counter>
+            <hr />
+            <RevealAnswer></RevealAnswer>
+            <hr />
+            <StartAttempt></StartAttempt>
+            <hr />
+            <TwoDice></TwoDice>
+            <hr />
+            <ChangeType></ChangeType>
+            <hr />
+            <CycleHoliday></CycleHoliday>
         </div>
     );
 }
