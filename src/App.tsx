@@ -12,6 +12,7 @@ function App(): React.JSX.Element {
         <div style={{ border: "10px solid red", padding: "1px" }}>
             <header className="App-header" style={{ backgroundColor: "red" }}>
                 <h1>Justin Arpaia UD CISC275</h1>
+                <img src="logo192.png" alt="React Logo" />
             </header>
             <hr></hr>
             <Counter></Counter>
@@ -25,6 +26,20 @@ function App(): React.JSX.Element {
             <ChangeType></ChangeType>
             <hr />
             <CycleHoliday></CycleHoliday>
+            <hr />
+            <ul>
+                <li>First list item</li>
+                <li>Second list item</li>
+                <li>Third list item</li>
+                <li>Fourth list item</li>
+            </ul>
+            <hr />
+            <button
+                className="btn btn-primary"
+                onClick={() => console.log("Hello World!")}
+            >
+                Log Hello World
+            </button>
         </div>
     );
 }
