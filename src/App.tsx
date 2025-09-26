@@ -36,7 +36,9 @@ function App(): React.JSX.Element {
             <hr />
             <button
                 className="btn btn-primary"
-                onClick={() => console.log("Hello World!")}
+                onClick={() => {
+                    console.log("Hello World!");
+                }}
             >
                 Log Hello World
             </button>
