@@ -169,20 +169,16 @@ export function changeQuestionTypeById(
     targetId: number,
     newQuestionType: QuestionType,
 ): Question[] {
-    return questions.map((question) =>
-        question.id === targetId ?
-            {
-                ...question,
-                type: newQuestionType,
-                options:
-                    newQuestionType === "multiple_choice_question" ?
-                        question.options
-                    :   [],
-            }
-        :   question,
-    );
-
+    return questions.map((question) => {
+        if (question.id === targetId) {
+            return {...question, type: newQuestionType,options: newQuestionType === "multiple_choice_question" ? question.options : [],};
+        } else {
+            return question;
+        }
+    });
 }
+
+
 
 /**
  * Consumes an array of Questions and produces a new array of Questions, where all
@@ -236,3 +232,69 @@ export function duplicateQuestionInArray(
     return result;
 
 }
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//PRACTICE
+//Consume an array of Questions and produce a new array where all the questions 
+// are the same except the one with the given targetId. That Question should be the 
+// same except that its points value is updated to a new value.
+
+export function changeQuestionPointsById(
+    questions: Question[],
+    targetId: number,
+    newPoints: number,
+): Question[] {
+    return questions.map((question) => {
+        if (question.id === targetId){
+            return {...question, points: newPoints};
+        } else {
+            return question;
+        }
+    });
+}
+
+/*Consume an array of Questions and produce a new array where all the 
+questions are the same except the one with the given targetId. 
+That question should be the same except that its body text is updated:
+If append is true, the newBody should be appended to the end of the existing body (with a space in between).
+If append is false, the body should be replaced entirely with newBody.*/
+export function changeQuestionBodyById(
+    questions: Question[],
+    targetId: number,
+    newBody: string,
+    append: boolean,
+): Question[] {
+    return questions.map((question) => {
+        if (question.id === targetId) {
+            return {...question, body: append ? question.body + " " + newBody : newBody}
+        } else {
+            return question;
+        }
+    })
+}
+
+/***
+Consumes an array of Questions, and produces a new array based on the original array.
+The only difference is that the question with id targetId should now have its points
+doubled, without modifying the original question object. The updated question should
+replace the original in the array.
+Use array methods and object spreading to avoid mutating the original questions.
+*/
+export function doubleQuestionPointsById(
+    questions: Question[],
+    targetId: number,
+): Question[] {
+    return questions.map((question) => {
+        if (question.id === targetId){
+            return {...question, points: question.points * 2};
+        } else {
+            return question;
+        }
+    })
+}
+
+
+
+
+
+
